@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+.bg-image {
+    background-image: url('https://i.ibb.co/xm3Lg0g/sangga-rima-roman-selia-YZ7ox9-q-Js-Y-unsplash.jpg');
+    background-position: center;
+    width: 100%;
+    height: 500px;
+    font-family: 'Luckiest Guy', cursive;
+}
