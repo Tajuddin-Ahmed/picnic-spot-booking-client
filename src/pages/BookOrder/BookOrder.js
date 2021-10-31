@@ -9,14 +9,15 @@ const BookOrder = () => {
     const history = useHistory();
     const redirect_uri = location.state?.from || '/';
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        const url = `https://possessed-mummy-20993.herokuapp.com/services/${serviceId}`;
+        fetch(url)
             .then(res => res.json())
             .then(data => {
                 setService(data);
             })
     }, [])
     const handleDeleteBooking = (id) => {
-        const url = `http://localhost:5000/services/${serviceId}`;
+        const url = `https://possessed-mummy-20993.herokuapp.com/${serviceId}`;
         fetch(url, {
             method: "DELETE",
         })
