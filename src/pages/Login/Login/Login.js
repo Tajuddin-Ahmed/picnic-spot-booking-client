@@ -1,12 +1,28 @@
-import React from 'react';
-import useFirebase from '../../../hooks/useFirebase';
+import React, { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { set } from 'react-hook-form';
+import { useHistory, useLocation } from 'react-router';
+import useAuth from '../../../hooks/useAuth';
+
 
 const Login = () => {
-    const { signInUsingGoogle } = useFirebase();
+    const { signInUsingGoogle, setIsLoading } = useAuth();
+
+    const location = useLocation();
+    const history = useHistory();
+    const redirect_uri = location.state?.from || '/';
+    const handleGoogleLogin = () => {
+        signInUsingGoogle()
+            .then(result => {
+                history.push(redirect_uri);
+            })
+            .finally(() => setIsLoading(false))
+
+    }
     return (
         <div>
             <h2>Please Login</h2>
-            <button onClick={signInUsingGoogle} className="btn btn-primary">Google SignIn</button>
+            <button onClick={handleGoogleLogin} className="btn btn-primary">Google SignIn</button>
         </div>
     );
 };

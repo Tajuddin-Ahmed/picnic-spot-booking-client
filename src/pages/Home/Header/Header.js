@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-import useFirebase from '../../../hooks/useFirebase';
+import useAuth from '../../../hooks/useAuth';
 import './Header.css';
 
 const Header = () => {
-    const { user, logOut } = useFirebase();
+    const { user, logOut } = useAuth();
     return (
         <>
             <Navbar sticky="top" bg="dark" variant="dark" collapseOnSelect expand="lg">
@@ -14,15 +14,30 @@ const Header = () => {
                     <Navbar.Brand href="#home">Picnic Spot Booking</Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
-                        <Nav.Link as={HashLink} to="/home#home">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/services">Services</Nav.Link>
-                        <Nav.Link as={HashLink} to="/home#experts">Experts</Nav.Link>
-                        <Navbar.Text>
-                            <a className="text-uppercase text-decoration-none" href="#login">{user?.displayName}</a>
-                        </Navbar.Text>
+                        <Nav.Link className="text-white" as={HashLink} to="/home#home">Home</Nav.Link>
+                        <Nav.Link className="text-white" as={Link} to="/services">Services</Nav.Link>
+                        <Nav.Link className="text-white" as={HashLink} to="/home#experts">Contact</Nav.Link>
+                        <Nav.Link className="text-white" as={HashLink} to="/home#experts">About</Nav.Link>
                         {user?.email ?
-                            <Button className="btn btn-dark" onClick={logOut} variant="light">Logout</Button> :
-                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            <NavDropdown className="text-uppercase text-decoration-none text-white"
+                                title={user?.displayName} id="basic-nav-dropdown">
+                                <Nav.Link as={Link} to="/addNewSpot">
+                                    <NavDropdown.Item href="#action/3.1">Add New Spot</NavDropdown.Item>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <NavDropdown.Item href="#action/3.2">Your Orders</NavDropdown.Item>
+                                </Nav.Link>
+                                <Nav.Link>
+                                    <NavDropdown.Item href="#action/3.2">Manage All Orders</NavDropdown.Item>
+                                </Nav.Link>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item className="text-center" href="#action/3.3">
+                                    <button className="btn btn-primary" onClick={logOut} variant="light">Logout</button>
+                                </NavDropdown.Item>
+                            </NavDropdown> :
+                            <Nav.Link as={Link} to="/login">
+                                <NavDropdown.Item className="text-white bg-dark" href="#action/3.3">Login</NavDropdown.Item>
+                            </Nav.Link>
                         }
                     </Navbar.Collapse>
                 </Container>
