@@ -17,23 +17,22 @@ const BookOrder = () => {
             })
     }, [])
     const handleDeleteBooking = (id) => {
-        const url = `https://possessed-mummy-20993.herokuapp.com/${serviceId}`;
-        fetch(url, {
-            method: "DELETE",
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    alert("Your Booking Deleted Successfully");
-                }
-                history.push(redirect_uri);
+        const proceed = window.confirm("Are You Sure to delete?");
+        if (proceed) {
+            const url = `https://possessed-mummy-20993.herokuapp.com/${id}`;
+            fetch(url, {
+                method: "DELETE",
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        alert("Your Booking Deleted Successfully");
+                    }
+                    history.push(redirect_uri);
+                })
+        }
     }
     return (
-        // <div>
-        //     <h3>Detail of : {service.name}</h3>
-        //     <h2>Booking Service : {serviceId}</h2>
-        // </div>
         <div className="card text-center">
             <div className="card-header">
                 <h1>Your Booking</h1>

@@ -11,6 +11,9 @@ import BookOrder from './pages/BookOrder/BookOrder';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
+import ManageAllOrders from './pages/ManageAllOrders/ManageAllOrders';
+import Contact from './pages/Contact/Contact';
+import About from './pages/About/About';
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
             <PrivateRoute path="/addNewSpot">
               <AddNewSpot></AddNewSpot>
             </PrivateRoute>
+            <PrivateRoute path="/allOrders">
+              <ManageAllOrders></ManageAllOrders>
+            </PrivateRoute>
             <Route path="/services">
               <BookingService></BookingService>
             </Route>
@@ -36,6 +42,12 @@ function App() {
             </PrivateRoute>
             <Route path="/placeOrder">
               <PlaceOrder></PlaceOrder>
+            </Route>
+            <Route path="/contact">
+              <Contact></Contact>
+            </Route>
+            <Route path="/about">
+              <About></About>
             </Route>
             <Route path="/login">
               <Login></Login>
