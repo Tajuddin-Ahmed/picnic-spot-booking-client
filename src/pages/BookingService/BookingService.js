@@ -12,7 +12,7 @@ const BookingService = () => {
     return (
         <div>
             <h2>All The Panoramic Picnic Spot</h2>
-            <div className="card-group">
+            <div className="card-group service-container">
                 {
                     services.map(service => <Service
                         key={service._id}

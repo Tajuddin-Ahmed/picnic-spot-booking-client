@@ -17,6 +17,8 @@ const Service = ({ service }) => {
                 </Link>
             </div>
         </div>
+
+
     );
 };
 
